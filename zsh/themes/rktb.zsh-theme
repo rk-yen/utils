@@ -66,15 +66,6 @@ prompt_end() {
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
-# Context: user@hostname (who am I and where am I)
-prompt_context() {
-  local user=`whoami`
-
-  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)✝"
-  fi
-}
-
 # Modify the colors and symbols in these variables as desired.
 GIT_PROMPT_PREFIX="%{$fg[green]%}[%{$reset_color%}"
 GIT_PROMPT_SUFFIX="%{$fg[green]%}]%{$reset_color%}"
@@ -140,25 +131,9 @@ prompt_dir() {
   # echo $(pwd | sed -e "s,^$HOME,~," | sed "s@\(.\)[^/]*/@\1/@g")
 }
 
-# Status:
-# - was there an error
-# - am I root
-# - are there background jobs?
-prompt_status() {
-  local symbols
-  symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
-
-  [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
-}
-
 ## Main prompt
 build_prompt() {
   RETVAL=$?
-  prompt_status
-  prompt_context
   prompt_dir
   prompt_end
   prompt_git
