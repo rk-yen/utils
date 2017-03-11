@@ -128,13 +128,21 @@ prompt_git() {
 # Dir: current working directory
 prompt_dir() {
   prompt_segment white black '%~'
-  # echo $(pwd | sed -e "s,^$HOME,~," | sed "s@\(.\)[^/]*/@\1/@g")
+}
+
+prompt_aws() {
+  local aws_profile="default"
+  if [[ -n $TCC_ENV ]]; then
+    aws_profile=$TCC_ENV
+  fi
+  prompt_segment cyan red ${aws_profile}
 }
 
 ## Main prompt
 build_prompt() {
   RETVAL=$?
   prompt_dir
+  prompt_aws
   prompt_end
   prompt_git
 }
