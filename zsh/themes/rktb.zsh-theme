@@ -134,6 +134,8 @@ prompt_aws() {
   local aws_profile="default"
   if [[ -n $TCC_ENV ]]; then
     aws_profile=$TCC_ENV
+  elif [[ -n $AWS_PROFILE ]]; then
+    aws_profile=$AWS_PROFILE
   fi
   prompt_segment cyan red ${aws_profile}
 }
