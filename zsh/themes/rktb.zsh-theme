@@ -75,6 +75,7 @@ GIT_PROMPT_MERGING="%{$fg_bold[magenta]%}⚡︎%{$reset_color%}"
 GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"
 GIT_PROMPT_MODIFIED="%{$fg_bold[yellow]%}●%{$reset_color%}"
 GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"
+GIT_PROMPT_CLEAN="%{$fg_bold[cyan]%}✔%{$reset_color%}"
 # Show Git branch/tag, or name-rev if on detached head
 parse_git_branch() {
   (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
@@ -114,6 +115,8 @@ parse_git_state() {
 
   if [[ -n $GIT_STATE ]]; then
     echo "$GIT_PROMPT_PREFIX$GIT_STATE$GIT_PROMPT_SUFFIX"
+  else
+    echo "$GIT_PROMPT_PREFIX$GIT_PROMPT_CLEAN$GIT_PROMPT_SUFFIX"
   fi
 }
 
