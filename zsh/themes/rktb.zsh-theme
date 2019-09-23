@@ -5,13 +5,8 @@
 #
 # # README
 #
-# In order for this theme to render correctly, you will need a
-# [Powerline-patched font](https://gist.github.com/1595572).
-#
-# In addition, I recommend the
-# [Solarized theme](https://github.com/altercation/solarized/) and, if you're
-# using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over Terminal.app -
-# it has significantly better color fidelity.
+# In order for this theme to render correctly, install the font
+# provided next to this theme.
 #
 # # Goals
 #
