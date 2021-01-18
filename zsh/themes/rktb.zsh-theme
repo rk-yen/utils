@@ -138,13 +138,19 @@ prompt_aws() {
   prompt_segment cyan red ${aws_profile}
 }
 
+prompt_ros() {
+  ros_prompt_info
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
+  prompt_ros
   prompt_dir
   prompt_aws
   prompt_end
   prompt_git
 }
+
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
