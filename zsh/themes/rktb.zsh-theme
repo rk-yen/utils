@@ -145,7 +145,8 @@ prompt_ros() {
 ## Main prompt
 build_prompt() {
   RETVAL=$?
-  prompt_ros
+  # ROS prompt not needed for macos
+  [[ "$OSTYPE" == darwin* ]] || prompt_ros
   prompt_dir
   prompt_aws
   prompt_end
