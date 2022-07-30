@@ -142,9 +142,16 @@ prompt_ros() {
   ros_prompt_info
 }
 
+prompt_pyenv() {
+  if [ -n "${PYENV_VERSION}" ]; then
+    echo -n "(${PYENV_VERSION}) "
+  fi
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
+  prompt_pyenv
   # ROS prompt not needed for macos
   [[ "$OSTYPE" == darwin* ]] || prompt_ros
   prompt_dir
